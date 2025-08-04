@@ -77,8 +77,11 @@ msg_info "Building EPUB Library"
 cd /opt/storyteller
 msg_info "Building Workspace Dependencies"
 $STD yarn workspace @smoores/fs build
-$STD yarn workspace @smoores/path build
+cd /opt/storyteller/fs && $STD npx tsc --emitDeclarationOnly
+$STD yarn workspace @smoores/path build  
+cd /opt/storyteller/path && $STD npx tsc --emitDeclarationOnly
 $STD yarn workspace @smoores/audiobook build
+cd /opt/storyteller/audiobook && $STD npx tsc --emitDeclarationOnly
 $STD yarn workspace @smoores/epub build:esm
 
 msg_info "Building Web Application"
