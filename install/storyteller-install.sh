@@ -75,8 +75,11 @@ msg_ok "Built SQLite Extension"
 
 msg_info "Building EPUB Library"
 cd /opt/storyteller
+msg_info "Building Workspace Dependencies"
+$STD yarn workspace @smoores/fs build
+$STD yarn workspace @smoores/path build
+$STD yarn workspace @smoores/audiobook build
 $STD yarn workspace @smoores/epub build:esm
-msg_ok "Built EPUB Library"
 
 msg_info "Building Web Application"
 $STD yarn build:web
