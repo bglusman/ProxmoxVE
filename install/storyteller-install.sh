@@ -65,8 +65,14 @@ $STD wget https://raw.githubusercontent.com/dwyl/english-words/master/words.txt 
 msg_ok "Downloaded Word List"
 
 msg_info "Installing Dependencies"
-$STD yarn install
+$STD yarn workspaces focus @storyteller/web @smoores/epub @smoores/audiobook @smoores/fs @smoores/path
 msg_ok "Installed Dependencies"
+
+msg_info "Setting Build Environment"
+export NODE_ENV=production
+export NEXT_TELEMETRY_DISABLED=1
+export SQLITE_NATIVE_BINDING=/opt/storyteller/node_modules/better-sqlite3/build/Release/better_sqlite3.node
+msg_ok "Set Build Environment"
 
 msg_info "Building SQLite Extension"
 cd /opt/storyteller/web
