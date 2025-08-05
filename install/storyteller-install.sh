@@ -96,7 +96,13 @@ mkdir -p sqlite
 cp /opt/storyteller/web/sqlite/uuid.c.so ./sqlite/uuid.c.so 2>/dev/null || true
 cp /opt/storyteller/web/words.txt ./words.txt 2>/dev/null || true
 
+# Copy critical Next.js assets (missing from original script)
+cd /opt/storyteller/web/.next/standalone
+cp -r ../../public ./web/public
+cp -r ../../.next/static ./web/.next/static
+
 # Copy WASM files that aren't statically imported
+cd /opt/storyteller/web/.next/standalone/web
 mkdir -p work-dist
 find /opt/storyteller/node_modules/@echogarden/speex-resampler-wasm/wasm/ -name "*.wasm" -exec cp {} ./work-dist/ \; 2>/dev/null || true
 cp /opt/storyteller/node_modules/@echogarden/pffft-wasm/dist/simd/pffft.wasm ./work-dist/ 2>/dev/null || true
