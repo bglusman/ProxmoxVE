@@ -166,6 +166,10 @@ EOF
 $STD systemctl enable --now storyteller
 msg_ok "Created Service"
 
+msg_info "Setting Root Password"
+echo "root:storyteller" | chpasswd
+msg_ok "Set Root Password (user: root, password: storyteller)"
+
 motd_ssh
 customize
 
