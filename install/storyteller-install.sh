@@ -76,13 +76,10 @@ msg_ok "Built SQLite Extension"
 msg_info "Building EPUB Library"
 cd /opt/storyteller
 msg_info "Building Workspace Dependencies"
-$STD yarn workspace @smoores/fs build
-cd /opt/storyteller/fs && $STD npx tsc --emitDeclarationOnly
-$STD yarn workspace @smoores/path build  
-cd /opt/storyteller/path && $STD npx tsc --emitDeclarationOnly
-$STD yarn workspace @smoores/audiobook build
-cd /opt/storyteller/audiobook && $STD npx tsc --emitDeclarationOnly
+$STD yarn workspace @smoores/fs build:esm
+$STD yarn workspace @smoores/path build:esm
 $STD yarn workspace @smoores/epub build:esm
+$STD yarn workspace @smoores/audiobook build:esm
 
 msg_info "Building Web Application"
 $STD yarn build:web
